@@ -1,38 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { HomeContext } from "../contexts/HomeContext";
+import { NavLink } from "react-router-dom";
 
 export const Home = () => {
-  const [allproduct, setAllproduct] = useState([]);
-  const [isLoding, setIsLoding] = useState(true);
-
-  useEffect(() => {
-    async function fetchdata() {
-      try {
-        const responce = await fetch("/api/products");
-        const data = await responce.json();
-        setAllproduct(data.products);
-        setIsLoding(false);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchdata();
-  }, []);
-
-  console.log(allproduct);
+  const { allBook, isLoding } = useContext(HomeContext);
+  console.log(allBook);
 
   return (
     <div>
       {isLoding ? (
         <p>Loding...</p>
       ) : (
-        allproduct.map((book) => {
-          const { author, id, title, price, categoryName } = book;
+        allBook.map((book) => {
+          const { author, _id, title, price, categoryName } = book;
           return (
-            <div>
+            <div id="book-div">
               <h3>Title: {title}</h3>
               <p>Author: {author}</p>
               <p>Price: {price}</p>
-              <hr />
+              <NavLink to={`/about/${_id}`}>
+                <p>Book Detail</p>
+              </NavLink>
             </div>
           );
         })
