@@ -8,23 +8,23 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "You Can WIN",
-    author: "Shiv Khera",
-    price: "5000",
-    categoryName: "non-fiction",
-  },
-  {
-    _id: uuid(),
-    title: "You are Winner",
-    author: "Junaid Qureshi",
-    price: "3000",
-    categoryName: "horror",
-  },
-  {
-    _id: uuid(),
-    title: "Think and Grow Rich",
-    author: "Shiv Khera",
-    price: "1000",
+    title: "The Midnight Library",
+    author: "Matt Haig",
+    price: "369",
     categoryName: "fiction",
+  },
+  {
+    _id: uuid(),
+    title: "Project Hail Mary",
+    author: "Andy Weir",
+    price: "400",
+    categoryName: "fiction",
+  },
+  {
+    _id: uuid(),
+    title: "The Headspace Guide To MEDITATION & MINDFULNESS",
+    author: "Andy Puddicombe",
+    price: "319",
+    categoryName: "self-help",
   },
 ];
