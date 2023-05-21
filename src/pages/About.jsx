@@ -1,30 +1,40 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { HomeContext } from "../contexts/HomeContext";
 import { NavLink } from "react-router-dom";
 
 export const About = () => {
   const { productId } = useParams();
-  const { allBook } = useContext(HomeContext);
+  const [book, setBook] = useState({});
 
-  const BookDetail = allBook.find((book) => book._id === productId);
+  useEffect(() => {
+    async function fetchdata() {
+      try {
+        const responce = await fetch(`/api/products/${productId}`);
+        const data = await responce.json();
+        setBook(data.product);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchdata();
+  }, []);
 
-  console.log(BookDetail);
+  console.log(book);
 
   return (
     <>
-      <div>
+      <div id="book-div">
         <h2>About...</h2>
-        {BookDetail ? (
+        {book ? (
           <>
-            <h2>{BookDetail.title}</h2>
-            <p>by {BookDetail.author}</p>
+            <h2>{book.title}</h2>
+            <p>by {book.author}</p>
           </>
         ) : (
           <p>Loading...</p>
         )}
-        <NavLink to="/home">Back to the All Products</NavLink>
       </div>
+      <NavLink to="/home">Back to the All Products</NavLink>
     </>
   );
 };
