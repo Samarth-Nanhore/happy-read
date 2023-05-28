@@ -8,6 +8,8 @@ import { Welcome } from "./pages/Welcome";
 import { About } from "./pages/About";
 import { Login } from "./pages/user/login";
 import { UserInfo } from "./pages/user/userInfo";
+import { RequireAuth } from "./components/RequireAuth";
+import { Cart } from "./pages/Cart";
 
 function App() {
   return (
@@ -20,6 +22,14 @@ function App() {
         <Route path="/about/:productId" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/userinfo" element={<UserInfo />} />
+        <Route
+          path="/cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </div>
   );

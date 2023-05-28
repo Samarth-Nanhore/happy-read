@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const LoginContext = createContext();
 
@@ -29,6 +29,7 @@ export const LoginContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, intialState);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const getUserData = async () => {
     try {
@@ -48,7 +49,7 @@ export const LoginContextProvider = ({ children }) => {
       });
       if (encodedToken) {
         localStorage.setItem("encodedToken", encodedToken);
-        navigate("/userinfo");
+        navigate(location?.state?.from?.pathname);
       } else {
         alert("invalid user");
       }
