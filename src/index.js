@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { HomeContextProvider } from "./contexts/HomeContext";
+import { LoginContextProvider } from "./contexts/LoginContext";
 
 import "./index.css";
 import App from "./App";
@@ -15,7 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <HomeContextProvider>
-        <App />
+        <LoginContextProvider>
+          <App />
+        </LoginContextProvider>
       </HomeContextProvider>
     </Router>
   </React.StrictMode>,

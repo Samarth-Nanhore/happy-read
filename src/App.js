@@ -6,6 +6,8 @@ import { Navbar } from "./components/Navbar";
 import { Home } from "./pages/Home";
 import { Welcome } from "./pages/Welcome";
 import { About } from "./pages/About";
+import { Login } from "./pages/user/login";
+import { UserInfo } from "./pages/user/userInfo";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/about/:productId" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/userinfo" element={<UserInfo />} />
       </Routes>
     </div>
   );
