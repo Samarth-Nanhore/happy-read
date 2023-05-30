@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
+import { WishlistContext } from "../contexts/WishlistContext";
 
 export const Cart = () => {
   const { cart, removeFromCart, updateCartItemQuantity } =
     useContext(CartContext);
+
+  const { addToWishlist } = useContext(WishlistContext);
 
   const calculateTotalPrice = () => {
     return cart.reduce((total, item) => {
@@ -35,15 +38,21 @@ export const Cart = () => {
                 <button onClick={() => removeFromCart(item._id)}>
                   Remove From Cart
                 </button>
+                ||
                 <button
                   onClick={() => updateCartItemQuantity(item._id, "increment")}
                 >
                   Increment Quantity
                 </button>
+                ||
                 <button
                   onClick={() => updateCartItemQuantity(item._id, "decrement")}
                 >
                   Decrement Quantity
+                </button>
+                ||
+                <button onClick={() => addToWishlist(item)}>
+                  Move to Wishlist
                 </button>
                 <hr />
               </li>

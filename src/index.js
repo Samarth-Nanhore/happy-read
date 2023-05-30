@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { HomeContextProvider } from "./contexts/HomeContext";
 import { LoginContextProvider } from "./contexts/LoginContext";
 import { CartContextProvider } from "./contexts/CartContext";
+import { WishlistContextProvider } from "./contexts/WishlistContext";
 
 import "./index.css";
 import App from "./App";
@@ -19,7 +20,9 @@ ReactDOM.render(
       <HomeContextProvider>
         <LoginContextProvider>
           <CartContextProvider>
-            <App />
+            <WishlistContextProvider>
+              <App />
+            </WishlistContextProvider>
           </CartContextProvider>
         </LoginContextProvider>
       </HomeContextProvider>
