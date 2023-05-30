@@ -7,6 +7,15 @@ import { UserInfo } from "./userInfo";
 export const Login = () => {
   const { state, dispatch, handleSumbit } = useContext(LoginContext);
 
+  const encodedToken = localStorage.getItem("encodedToken");
+  const navigate = useNavigate();
+
+  if (encodedToken) {
+    // User is logged in, navigate to the UserInfo page
+    navigate("/userinfo");
+    return null;
+  }
+
   return (
     <>
       <div id="login-div">

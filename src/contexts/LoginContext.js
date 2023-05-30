@@ -6,7 +6,6 @@ export const LoginContext = createContext();
 const intialState = {
   email: "",
   password: "",
-  userDetail: { firstName: "", lastName: "" },
 };
 
 const reducer = (state, action) => {
@@ -15,11 +14,6 @@ const reducer = (state, action) => {
       return { ...state, email: action.payload };
     case "password":
       return { ...state, password: action.payload };
-    case "namesetter":
-      return {
-        ...state,
-        userDetail: { firstName: action.firstName, lastName: action.lastName },
-      };
     default:
       return state;
   }
@@ -42,13 +36,9 @@ export const LoginContextProvider = ({ children }) => {
         body: JSON.stringify(creds),
       });
       const { encodedToken, foundUser } = await response.json();
-      dispatch({
-        type: "namesetter",
-        firstName: foundUser?.firstName,
-        lastName: foundUser?.lastName,
-      });
       if (encodedToken) {
         localStorage.setItem("encodedToken", encodedToken);
+        localStorage.setItem("userDetail", JSON.stringify(foundUser));
         navigate(location?.state?.from?.pathname);
       } else {
         alert("invalid user");

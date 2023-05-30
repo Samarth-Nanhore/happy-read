@@ -1,14 +1,28 @@
-import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { useEffect, useState } from "react";
 
 export const UserInfo = () => {
-  const { state } = useContext(LoginContext);
+  const [UserDetail, setUserDetail] = useState(null);
+
+  useEffect(() => {
+    const userDetail = localStorage.getItem("userDetail");
+
+    if (userDetail) {
+      const parsedDetail = JSON.parse(userDetail);
+      setUserDetail(parsedDetail);
+      // Access the user details directly without using state
+      console.log("FirstName:", parsedDetail?.firstName);
+      console.log("LastName:", parsedDetail?.lastName);
+    }
+  }, []);
+  console.log(UserDetail);
 
   return (
     <>
       <h1>UserDetail</h1>
-      <p>FirstName: {state.userDetail.firstName}</p>
-      <p>LastName: {state.userDetail.lastName}</p>
+      {/* Render the user details */}
+      <p>FirstName: {UserDetail?.firstName}</p>
+      <p>LastName: {UserDetail?.lastName}</p>
+      <p>Email: {UserDetail?.email}</p>
     </>
   );
 };
