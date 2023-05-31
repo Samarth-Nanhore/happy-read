@@ -11,6 +11,7 @@ export const Home = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState([100, 1000]);
   const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedSortOption, setSelectedSortOption] = useState("");
 
   const filteredBooks =
     selectedCategories.length === 0
@@ -29,6 +30,16 @@ export const Home = () => {
         );
 
   const renderBook = () => {
+    filteredBooks.sort((a, b) => {
+      if (selectedSortOption === "lowToHigh") {
+        return a.price - b.price; // Sort by price low to high
+      } else if (selectedSortOption === "highToLow") {
+        return b.price - a.price; // Sort by price high to low
+      } else {
+        return 0; // No sorting applied
+      }
+    });
+
     return filteredBooks.map((book) => {
       const { author, _id, title, price, categoryName, rating } = book;
       const isAddedToCart = cart.map((book) => book._id).includes(_id);
@@ -76,6 +87,11 @@ export const Home = () => {
   const handleRatingChange = (e) => {
     const selectedRating = parseInt(e.target.value);
     setSelectedRating(selectedRating);
+  };
+
+  const handleSortOptionChange = (e) => {
+    const selectedSortOption = e.target.value;
+    setSelectedSortOption(selectedSortOption);
   };
 
   return (
@@ -159,6 +175,27 @@ export const Home = () => {
               onChange={handleRatingChange}
             />
             4 stars & above
+          </label>
+        </div>
+        <div>
+          <span>Sort by Price: </span>
+          <label>
+            <input
+              type="radio"
+              value="lowToHigh"
+              checked={selectedSortOption === "lowToHigh"}
+              onChange={handleSortOptionChange}
+            />
+            Low to High
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="highToLow"
+              checked={selectedSortOption === "highToLow"}
+              onChange={handleSortOptionChange}
+            />
+            High to Low
           </label>
         </div>
       </div>
