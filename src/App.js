@@ -11,6 +11,7 @@ import { UserInfo } from "./pages/user/userInfo";
 import { RequireAuth } from "./components/RequireAuth";
 import { Cart } from "./pages/Cart";
 import { WishList } from "./pages/WishList";
+import { Signup } from "./pages/user/signup";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

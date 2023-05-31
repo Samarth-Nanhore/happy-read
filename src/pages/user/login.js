@@ -1,5 +1,5 @@
 import { useContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import "../user/login.css";
 import { LoginContext } from "../../contexts/LoginContext";
 import { UserInfo } from "./userInfo";
@@ -30,6 +30,7 @@ export const Login = () => {
                 onChange={(e) =>
                   dispatch({ type: "email", payload: e.target.value })
                 }
+                required
               />
             </label>
           </div>
@@ -43,6 +44,7 @@ export const Login = () => {
                 onChange={(e) =>
                   dispatch({ type: "password", payload: e.target.value })
                 }
+                required
               />
             </label>
           </div>
@@ -50,6 +52,7 @@ export const Login = () => {
             <button type="submit">Submit</button>
           </div>
         </form>
+        <NavLink to="/signup">Create New Acoount</NavLink>
       </div>
     </>
   );

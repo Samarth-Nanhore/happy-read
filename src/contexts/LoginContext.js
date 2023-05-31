@@ -50,12 +50,6 @@ export const LoginContextProvider = ({ children }) => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-
-    if (state.email.trim() === "" || state.password.trim() === "") {
-      alert("Please enter both email and password.");
-      return;
-    }
-
     getUserData();
   };
 
