@@ -1,34 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { HomeContext } from "../contexts/HomeContext";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
+import { FilterContext } from "../contexts/FilterContext";
+import { ArrayFilter } from "../components/ArrayFilter";
 
 export const Home = () => {
-  const { allBook, isLoding } = useContext(HomeContext);
-
+  const { isLoding } = useContext(HomeContext);
   const { addToCart, cart } = useContext(CartContext);
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedPriceRange, setSelectedPriceRange] = useState([100, 1000]);
-  const [selectedRating, setSelectedRating] = useState(0);
-  const [selectedSortOption, setSelectedSortOption] = useState("");
-  const [isFilterApplied, setIsFilterApplied] = useState(false);
-
-  const filteredBooks =
-    selectedCategories.length === 0
-      ? allBook.filter(
-          (book) =>
-            book.price >= selectedPriceRange[0] &&
-            book.price <= selectedPriceRange[1] &&
-            book.rating >= selectedRating
-        )
-      : allBook.filter(
-          (book) =>
-            selectedCategories.includes(book.categoryName) &&
-            book.price >= selectedPriceRange[0] &&
-            book.price <= selectedPriceRange[1] &&
-            book.rating >= selectedRating
-        );
+  const { filteredBooks, selectedSortOption } = useContext(FilterContext);
 
   const renderBook = () => {
     filteredBooks.sort((a, b) => {
@@ -67,155 +47,9 @@ export const Home = () => {
     });
   };
 
-  const handleCategoryChange = (e) => {
-    const selectedCategory = e.target.value;
-    if (e.target.checked) {
-      setSelectedCategories([...selectedCategories, selectedCategory]);
-    } else {
-      setSelectedCategories(
-        selectedCategories.filter((category) => category !== selectedCategory)
-      );
-    }
-    setIsFilterApplied(true);
-  };
-
-  const handlePriceChange = (e) => {
-    const selectedMinPrice = parseInt(e.target.value);
-    const selectedMaxPrice = 1000; // Assuming the maximum price is 1000
-
-    setSelectedPriceRange([selectedMinPrice, selectedMaxPrice]);
-    setIsFilterApplied(true);
-  };
-
-  const handleRatingChange = (e) => {
-    const selectedRating = parseInt(e.target.value);
-    setSelectedRating(selectedRating);
-    setIsFilterApplied(true);
-  };
-
-  const handleSortOptionChange = (e) => {
-    const selectedSortOption = e.target.value;
-    setSelectedSortOption(selectedSortOption);
-    setIsFilterApplied(true);
-  };
-
-  const clearFilters = () => {
-    setSelectedCategories([]);
-    setSelectedPriceRange([100, 1000]);
-    setSelectedRating(0);
-    setSelectedSortOption("");
-    setIsFilterApplied(false);
-  };
-
   return (
     <div>
-      <div>
-        <span>Filter by Category: </span>
-        <label>
-          <input
-            type="checkbox"
-            value="fiction"
-            checked={selectedCategories.includes("fiction")}
-            onChange={handleCategoryChange}
-          />
-          fiction
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="non-fiction"
-            checked={selectedCategories.includes("non-fiction")}
-            onChange={handleCategoryChange}
-          />
-          non-fiction
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="self-help"
-            checked={selectedCategories.includes("self-help")}
-            onChange={handleCategoryChange}
-          />
-          self-help
-        </label>
-
-        <div>
-          <span>Filter by Price: </span>
-          <input
-            type="range"
-            min={100}
-            max={1000}
-            value={selectedPriceRange[0]}
-            onChange={handlePriceChange}
-          />
-          <span>{selectedPriceRange[0]}</span>
-        </div>
-
-        <div>
-          <span>Filter by Rating: </span>
-          <label>
-            <input
-              type="radio"
-              value={1}
-              checked={selectedRating === 1}
-              onChange={handleRatingChange}
-            />
-            1 star & above
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={2}
-              checked={selectedRating === 2}
-              onChange={handleRatingChange}
-            />
-            2 stars & above
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={3}
-              checked={selectedRating === 3}
-              onChange={handleRatingChange}
-            />
-            3 stars & above
-          </label>
-          <label>
-            <input
-              type="radio"
-              value={4}
-              checked={selectedRating === 4}
-              onChange={handleRatingChange}
-            />
-            4 stars & above
-          </label>
-        </div>
-        <div>
-          <span>Sort by Price: </span>
-          <label>
-            <input
-              type="radio"
-              value="lowToHigh"
-              checked={selectedSortOption === "lowToHigh"}
-              onChange={handleSortOptionChange}
-            />
-            Low to High
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="highToLow"
-              checked={selectedSortOption === "highToLow"}
-              onChange={handleSortOptionChange}
-            />
-            High to Low
-          </label>
-        </div>
-        {isFilterApplied && (
-          <button onClick={clearFilters}>Clear Filters</button>
-        )}
-      </div>
-
+      {!isLoding && <ArrayFilter />}
       {isLoding ? <h3>...Loding</h3> : renderBook()}
     </div>
   );
