@@ -1,8 +1,7 @@
-import { useContext, useReducer } from "react";
+import { useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import "../user/login.css";
 import { LoginContext } from "../../contexts/LoginContext";
-import { UserInfo } from "./userInfo";
 
 export const Login = () => {
   const { state, dispatch, handleSumbit } = useContext(LoginContext);
