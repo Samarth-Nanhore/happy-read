@@ -12,6 +12,7 @@ export const Home = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState([100, 1000]);
   const [selectedRating, setSelectedRating] = useState(0);
   const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
 
   const filteredBooks =
     selectedCategories.length === 0
@@ -75,6 +76,7 @@ export const Home = () => {
         selectedCategories.filter((category) => category !== selectedCategory)
       );
     }
+    setIsFilterApplied(true);
   };
 
   const handlePriceChange = (e) => {
@@ -82,16 +84,27 @@ export const Home = () => {
     const selectedMaxPrice = 1000; // Assuming the maximum price is 1000
 
     setSelectedPriceRange([selectedMinPrice, selectedMaxPrice]);
+    setIsFilterApplied(true);
   };
 
   const handleRatingChange = (e) => {
     const selectedRating = parseInt(e.target.value);
     setSelectedRating(selectedRating);
+    setIsFilterApplied(true);
   };
 
   const handleSortOptionChange = (e) => {
     const selectedSortOption = e.target.value;
     setSelectedSortOption(selectedSortOption);
+    setIsFilterApplied(true);
+  };
+
+  const clearFilters = () => {
+    setSelectedCategories([]);
+    setSelectedPriceRange([100, 1000]);
+    setSelectedRating(0);
+    setSelectedSortOption("");
+    setIsFilterApplied(false);
   };
 
   return (
@@ -198,6 +211,9 @@ export const Home = () => {
             High to Low
           </label>
         </div>
+        {isFilterApplied && (
+          <button onClick={clearFilters}>Clear Filters</button>
+        )}
       </div>
 
       {isLoding ? <h3>...Loding</h3> : renderBook()}
