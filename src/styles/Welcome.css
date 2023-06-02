@@ -1,0 +1,52 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-color: #f2f2f2;
+  text-align: center;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.banner h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.explore-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.explore-button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    height: 200px;
+  }
+
+  .banner h2 {
+    font-size: 24px;
+  }
+
+  .banner p {
+    font-size: 16px;
+  }
+}

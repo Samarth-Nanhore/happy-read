@@ -1,8 +1,14 @@
+/* font for complete app */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+/* font for navabr logo */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Source+Sans+Pro:wght@700&display=swap");
+
 .App {
   text-align: center;
-  max-width: 800px; /* Adjust the value to your desired width */
+  /* Adjust the value to your desired width */
   margin: 0 auto; /* Center the content horizontally */
   padding: 20px; /* Add some padding for spacing */
+  font-family: "Noto Sans", sans-serif;
 }
 #book-div {
   border: 2px solid #85b4ee;
