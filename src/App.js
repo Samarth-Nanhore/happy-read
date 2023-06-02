@@ -12,6 +12,7 @@ import { RequireAuth } from "./components/RequireAuth";
 import { Cart } from "./pages/Cart";
 import { WishList } from "./pages/WishList";
 import { Signup } from "./pages/user/signup";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         />
         <Route path="/signup" element={<Signup />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
