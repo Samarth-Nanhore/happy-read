@@ -11,6 +11,7 @@ export const FilterContextProvider = ({ children }) => {
   const [selectedRating, setSelectedRating] = useState(0);
   const [selectedSortOption, setSelectedSortOption] = useState("");
   const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [searchTitle, setSearchTitle] = useState("");
 
   const filteredBooks =
     selectedCategories.length === 0
@@ -27,6 +28,10 @@ export const FilterContextProvider = ({ children }) => {
             book.price <= selectedPriceRange[1] &&
             book.rating >= selectedRating
         );
+
+  const filteredBooksBySearch = filteredBooks.filter((book) =>
+    book.title.toLowerCase().includes(searchTitle.toLowerCase())
+  ); //apply search filter to array from contetxt
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
@@ -60,11 +65,17 @@ export const FilterContextProvider = ({ children }) => {
     setIsFilterApplied(true);
   };
 
+  const handleInputSearchChange = (e) => {
+    setSearchTitle(e.target.value);
+    setIsFilterApplied(true);
+  };
+
   const clearFilters = () => {
     setSelectedCategories([]);
     setSelectedPriceRange([100, 1000]);
     setSelectedRating(0);
     setSelectedSortOption("");
+    setSearchTitle("");
     setIsFilterApplied(false);
   };
 
@@ -83,6 +94,9 @@ export const FilterContextProvider = ({ children }) => {
           handleSortOptionChange,
           isFilterApplied,
           clearFilters,
+          filteredBooksBySearch,
+          handleInputSearchChange,
+          searchTitle,
         }}
       >
         {children}

@@ -13,6 +13,8 @@ export const ArrayFilter = () => {
     handleSortOptionChange,
     isFilterApplied,
     clearFilters,
+    handleInputSearchChange,
+    searchTitle,
   } = useContext(FilterContext);
 
   return (
@@ -117,6 +119,14 @@ export const ArrayFilter = () => {
           />
           High to Low
         </label>
+      </div>
+      <div>
+        <input
+          type="text"
+          value={searchTitle}
+          onChange={handleInputSearchChange}
+          placeholder="Search by title"
+        />
       </div>
       {isFilterApplied && <button onClick={clearFilters}>Clear Filters</button>}
     </div>

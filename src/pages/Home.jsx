@@ -8,12 +8,8 @@ import { ArrayFilter } from "../components/ArrayFilter";
 export const Home = () => {
   const { isLoding } = useContext(HomeContext);
   const { addToCart, cart } = useContext(CartContext);
-  const { filteredBooks, selectedSortOption } = useContext(FilterContext);
-  const [searchTitle, setSearchTitle] = useState("");
-
-  const filteredBooksBySearch = filteredBooks.filter((book) =>
-    book.title.toLowerCase().includes(searchTitle.toLowerCase())
-  );
+  const { filteredBooksBySearch, selectedSortOption } =
+    useContext(FilterContext);
 
   const renderBook = () => {
     filteredBooksBySearch.sort((a, b) => {
@@ -59,12 +55,6 @@ export const Home = () => {
   return (
     <div>
       {!isLoding && <ArrayFilter />}
-      <input
-        type="text"
-        value={searchTitle}
-        onChange={(e) => setSearchTitle(e.target.value)}
-        placeholder="Search by title"
-      />
       {isLoding ? <h3>...Loding</h3> : renderBook()}
     </div>
   );
