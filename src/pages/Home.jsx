@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { HomeContext } from "../contexts/HomeContext";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
@@ -9,9 +9,14 @@ export const Home = () => {
   const { isLoding } = useContext(HomeContext);
   const { addToCart, cart } = useContext(CartContext);
   const { filteredBooks, selectedSortOption } = useContext(FilterContext);
+  const [searchTitle, setSearchTitle] = useState("");
+
+  const filteredBooksBySearch = filteredBooks.filter((book) =>
+    book.title.toLowerCase().includes(searchTitle.toLowerCase())
+  );
 
   const renderBook = () => {
-    filteredBooks.sort((a, b) => {
+    filteredBooksBySearch.sort((a, b) => {
       if (selectedSortOption === "lowToHigh") {
         return a.price - b.price; // Sort by price low to high
       } else if (selectedSortOption === "highToLow") {
@@ -21,7 +26,11 @@ export const Home = () => {
       }
     });
 
-    return filteredBooks.map((book) => {
+    if (filteredBooksBySearch.length === 0) {
+      return <p>Book not found.</p>;
+    }
+
+    return filteredBooksBySearch.map((book) => {
       const { author, _id, title, price, categoryName, rating } = book;
       const isAddedToCart = cart.map((book) => book._id).includes(_id);
       return (
@@ -50,6 +59,12 @@ export const Home = () => {
   return (
     <div>
       {!isLoding && <ArrayFilter />}
+      <input
+        type="text"
+        value={searchTitle}
+        onChange={(e) => setSearchTitle(e.target.value)}
+        placeholder="Search by title"
+      />
       {isLoding ? <h3>...Loding</h3> : renderBook()}
     </div>
   );
