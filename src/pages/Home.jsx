@@ -27,25 +27,28 @@ export const Home = () => {
     }
 
     return filteredBooksBySearch.map((book) => {
-      const { author, _id, title, price, categoryName, rating } = book;
+      const { author, _id, title, price, categoryName, rating, img } = book;
       const isAddedToCart = cart.map((book) => book._id).includes(_id);
+
       return (
-        <div id="book-div" key={_id}>
+        <div key={_id} className="book">
+          <img src={img} alt={title} />
           <h3>Title: {title}</h3>
-          <p>Author: {author}</p>
-          <p>Rating: {rating}</p>
-          <p>Price: {price}</p>
-          <p>Category-Name: {categoryName}</p>
+          <p>rating: {rating}</p>
+
+          <p>price: {price}</p>
 
           <NavLink to={`/about/${_id}`}>
             <p>Book Detail</p>
           </NavLink>
           {isAddedToCart ? (
-            <NavLink to="/cart">
+            <NavLink to="/cart" className="button-container">
               <button>Go to Cart</button>
             </NavLink>
           ) : (
-            <button onClick={() => addToCart(book)}>Add to Cart</button>
+            <div className="button-container">
+              <button onClick={() => addToCart(book)}>Add to Cart</button>
+            </div>
           )}
         </div>
       );
@@ -55,7 +58,11 @@ export const Home = () => {
   return (
     <div>
       {!isLoding && <ArrayFilter />}
-      {isLoding ? <h3>...Loding</h3> : renderBook()}
+      {isLoding ? (
+        <h3>...Loading</h3>
+      ) : (
+        <div className="book-container">{renderBook()}</div>
+      )}
     </div>
   );
 };

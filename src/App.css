@@ -10,9 +10,66 @@
   padding: 20px; /* Add some padding for spacing */
   font-family: "Noto Sans", sans-serif;
 }
-#book-div {
-  border: 2px solid #85b4ee;
-  padding-top: 0.5rem;
-  margin: 5px;
-  margin-top: 1rem;
+
+/* Home.jsx css  */
+
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center; /* Center text content */
+}
+
+.book img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.book .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.book .logo-container img {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.book .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.book .button-container button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book .button-container button:hover {
+  background-color: #0056b3;
+}
+
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .book {
+    width: 100%;
+  }
 }

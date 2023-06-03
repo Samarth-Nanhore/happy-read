@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { FilterContext } from "../contexts/FilterContext";
+import "../styles/ArrayFilter.css";
 
 export const ArrayFilter = () => {
   const {
@@ -18,7 +19,15 @@ export const ArrayFilter = () => {
   } = useContext(FilterContext);
 
   return (
-    <div>
+    <div className="array-filter">
+      <div>
+        <input
+          type="text"
+          value={searchTitle}
+          onChange={handleInputSearchChange}
+          placeholder="Search by title"
+        />
+      </div>
       <span>Filter by Category: </span>
       <label>
         <input
@@ -120,14 +129,7 @@ export const ArrayFilter = () => {
           High to Low
         </label>
       </div>
-      <div>
-        <input
-          type="text"
-          value={searchTitle}
-          onChange={handleInputSearchChange}
-          placeholder="Search by title"
-        />
-      </div>
+
       {isFilterApplied && <button onClick={clearFilters}>Clear Filters</button>}
     </div>
   );

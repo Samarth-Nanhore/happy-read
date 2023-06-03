@@ -1,0 +1,38 @@
+.array-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.array-filter input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.array-filter span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.array-filter label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.array-filter button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.array-filter button:hover {
+  background-color: #0056b3;
+}
