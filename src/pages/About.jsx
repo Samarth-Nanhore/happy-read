@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import "../styles/About.css";
 
 export const About = () => {
   const { productId } = useParams();
@@ -27,14 +28,21 @@ export const About = () => {
         <h2>About...</h2>
         {book ? (
           <>
+            <img src={book.img} alt={book.title} />
             <h2>{book.title}</h2>
             <p>by {book.author}</p>
+            <p>Pages: {book.pages}</p>
+            <p>Rating: {book.rating}</p>
+            <p>Price: {book.price}</p>
+            <p>Delivery: {book.delivery} days</p>
           </>
         ) : (
           <p>Loading...</p>
         )}
       </div>
-      <NavLink to="/home">Back to the All Products</NavLink>
+      <NavLink to="/home" className="back-link">
+        Back to All Products
+      </NavLink>
     </>
   );
 };
