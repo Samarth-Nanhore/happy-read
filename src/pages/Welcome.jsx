@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../styles/Welcome.css";
+import { Footer } from "../components/Footer";
 
 export const Welcome = () => {
   const [allBookcategories, setAllbookcategories] = useState([]);
@@ -41,6 +42,7 @@ export const Welcome = () => {
           })}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
