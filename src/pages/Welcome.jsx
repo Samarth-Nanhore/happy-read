@@ -22,8 +22,8 @@ export const Welcome = () => {
   return (
     <>
       <div className="banner">
-        <h2>Welcome To Happy Read</h2>
-        <p>"Find Your Next Great Read."</p>
+        <h2>Welcome To HappyRead</h2>
+        <p>"Explore Your Next Great Read."</p>
         <NavLink to="/home" className="explore-button">
           Explore Now
         </NavLink>

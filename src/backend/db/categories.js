@@ -10,18 +10,18 @@ export const categories = [
     _id: uuid(),
     categoryName: "Fiction",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "Explore the art of storytelling with our captivating selection of fiction books.",
   },
   {
     _id: uuid(),
     categoryName: "Non-Fiction",
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "Explore journey of knowledge and discovery with our enlightening collection of non-fiction books.",
   },
   {
     _id: uuid(),
     categoryName: "Self Help",
     description:
-      "A self-help book is a guide that empowers individuals to improve their personal lives, relationships, and well-being through practical advice and strategies.",
+      " Find guidance and personal growth insights from our empowering collection of self-help books.",
   },
 ];
