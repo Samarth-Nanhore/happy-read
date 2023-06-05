@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../user/UserDetail.css";
 
 export const UserInfo = () => {
   const [UserDetail, setUserDetail] = useState(null);
@@ -25,13 +26,23 @@ export const UserInfo = () => {
   };
 
   return (
-    <>
-      <h1>UserDetail</h1>
-      {/* Render the user details */}
-      <p>FirstName: {UserDetail?.firstName}</p>
-      <p>LastName: {UserDetail?.lastName}</p>
-      <p>Email: {UserDetail?.email}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </>
+    <div className="user-info-container">
+      <h1>Welcome back</h1>
+      <div className="user-info">
+        <p>
+          <span className="info-label">First Name:</span>{" "}
+          {UserDetail?.firstName}
+        </p>
+        <p>
+          <span className="info-label">Last Name:</span> {UserDetail?.lastName}
+        </p>
+        <p>
+          <span className="info-label">Email:</span> {UserDetail?.email}
+        </p>
+      </div>
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 };

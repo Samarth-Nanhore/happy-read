@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { WishlistContext } from "../contexts/WishlistContext";
+import "../styles/Cart.css";
 
 export const Cart = () => {
   const { cart, removeFromCart, updateCartItemQuantity } =

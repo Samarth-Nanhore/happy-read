@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { FilterContext } from "../contexts/FilterContext";
 import { ArrayFilter } from "../components/ArrayFilter";
+import "../styles/Home.css";
 
 export const Home = () => {
   const { isLoding } = useContext(HomeContext);
