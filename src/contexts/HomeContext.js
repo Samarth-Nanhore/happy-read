@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 export const HomeContext = createContext();
 
 export const HomeContextProvider = ({ children }) => {
-  const [isLoding, setIsLoding] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [allBook, setAllbook] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export const HomeContextProvider = ({ children }) => {
         const responce = await fetch("/api/products");
         const data = await responce.json();
         setAllbook(data.products);
-        setIsLoding(false);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -22,7 +22,7 @@ export const HomeContextProvider = ({ children }) => {
 
   return (
     <>
-      <HomeContext.Provider value={{ allBook, isLoding }}>
+      <HomeContext.Provider value={{ allBook, isLoading }}>
         {children}
       </HomeContext.Provider>
       ;

@@ -31,10 +31,10 @@ export const WishlistContextProvider = ({ children }) => {
         const RemoveItemFromCart = cart.filter((item) => item._id !== book._id);
         setCart(RemoveItemFromCart);
         // Book added to wishlist successfully
-        alert("book added to wishlist");
+        alert("added to wishlist");
       } else {
         // Handle error response
-        alert("Failed to add book to cart");
+        alert("Failed to add to wishlist");
       }
     } catch (error) {
       console.log(error);
@@ -52,14 +52,14 @@ export const WishlistContextProvider = ({ children }) => {
       });
       // give product id
       if (response.ok) {
-        alert("book deleted from wishlist");
+        alert("deleted from wishlist");
         const updatedWishlistItems = wishlist.filter(
           (item) => item._id !== bookId
         );
         setWishlist(updatedWishlistItems); // Update wishlistsItems
       } else {
         // Handle error response
-        alert("Failed to delete book from cart");
+        alert("Failed to delete from wishlist");
       }
     } catch (error) {
       console.log(error);
@@ -78,7 +78,7 @@ export const WishlistContextProvider = ({ children }) => {
       });
       // give product id
       if (response.ok) {
-        alert("book added to cart");
+        alert("added to cart");
         const updatedWishlistItems = wishlist.filter(
           (item) => item._id !== bookId
         );
@@ -86,7 +86,7 @@ export const WishlistContextProvider = ({ children }) => {
         setCart([...cart, book]);
       } else {
         // Handle error response
-        alert("Failed to delete book from cart");
+        alert("Failed to add to cart");
       }
     } catch (error) {
       console.log(error);

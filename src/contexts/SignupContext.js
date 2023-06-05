@@ -48,7 +48,7 @@ export const SignupContextProvider = ({ children }) => {
       const data = await response.json();
       // Handle the response data as needed
       console.log(data);
-      alert("Successfully sign up!! please login again");
+      alert("successfully sign up!! please login again");
 
       navigate("/login");
     } catch (error) {

@@ -7,7 +7,7 @@ import { ArrayFilter } from "../components/ArrayFilter";
 import "../styles/Home.css";
 
 export const Home = () => {
-  const { isLoding } = useContext(HomeContext);
+  const { isLoading } = useContext(HomeContext);
   const { addToCart, cart } = useContext(CartContext);
   const { filteredBooksBySearch, selectedSortOption } =
     useContext(FilterContext);
@@ -24,7 +24,7 @@ export const Home = () => {
     });
 
     if (filteredBooksBySearch.length === 0) {
-      return <p>Book not found.</p>;
+      return <p>No Products Found for applied filters.</p>;
     }
 
     return filteredBooksBySearch.map((book) => {
@@ -58,8 +58,8 @@ export const Home = () => {
 
   return (
     <div>
-      {!isLoding && <ArrayFilter />}
-      {isLoding ? (
+      {!isLoading && <ArrayFilter />}
+      {isLoading ? (
         <h3>...Loading</h3>
       ) : (
         <div className="book-container">{renderBook()}</div>

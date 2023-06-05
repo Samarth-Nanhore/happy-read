@@ -31,10 +31,10 @@ export const CartContextProvider = ({ children }) => {
         }));
         setCart(updateCartobj);
         // Book added to cart successfully
-        alert("book added to cart");
+        alert("added to cart");
       } else {
         // Handle error response
-        alert("Failed to add book to cart");
+        alert("Failed to add to cart");
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +59,7 @@ export const CartContextProvider = ({ children }) => {
         setCart(updatedCartItems); // Update cartItems in CartContext
       } else {
         // Handle error response
-        alert("Failed to delete book from cart");
+        alert("Failed to delete from cart");
       }
     } catch (error) {
       console.log(error);
