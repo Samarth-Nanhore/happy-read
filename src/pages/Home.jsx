@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { HomeContext } from "../contexts/HomeContext";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
@@ -28,7 +28,7 @@ export const Home = () => {
     }
 
     return filteredBooksBySearch.map((book) => {
-      const { author, _id, title, price, categoryName, rating, img } = book;
+      const { _id, title, price, rating, img } = book;
       const isAddedToCart = cart.map((book) => book._id).includes(_id);
 
       return (

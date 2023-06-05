@@ -18,7 +18,7 @@ export const About = () => {
       }
     }
     fetchdata();
-  }, []);
+  }, [productId]);
 
   console.log(book);
 
