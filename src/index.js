@@ -8,6 +8,7 @@ import { CartContextProvider } from "./contexts/CartContext";
 import { WishlistContextProvider } from "./contexts/WishlistContext";
 import { SignupContextProvider } from "./contexts/SignupContext";
 import { FilterContextProvider } from "./contexts/FilterContext";
+import { WelcomeContextProvider } from "./contexts/WelcomeContext";
 
 import "./index.css";
 import App from "./App";
@@ -25,7 +26,9 @@ ReactDOM.render(
             <WishlistContextProvider>
               <SignupContextProvider>
                 <FilterContextProvider>
-                  <App />
+                  <WelcomeContextProvider>
+                    <App />
+                  </WelcomeContextProvider>
                 </FilterContextProvider>
               </SignupContextProvider>
             </WishlistContextProvider>

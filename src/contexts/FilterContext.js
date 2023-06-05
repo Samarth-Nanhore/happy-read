@@ -97,6 +97,7 @@ export const FilterContextProvider = ({ children }) => {
           filteredBooksBySearch,
           handleInputSearchChange,
           searchTitle,
+          setSelectedCategories,
         }}
       >
         {children}
