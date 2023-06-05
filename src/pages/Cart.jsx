@@ -43,13 +43,13 @@ export const Cart = () => {
                 <button
                   onClick={() => updateCartItemQuantity(item._id, "increment")}
                 >
-                  Increment Quantity
+                  +
                 </button>
                 ||
                 <button
                   onClick={() => updateCartItemQuantity(item._id, "decrement")}
                 >
-                  Decrement Quantity
+                  -
                 </button>
                 ||
                 <button onClick={() => addToWishlist(item)}>
